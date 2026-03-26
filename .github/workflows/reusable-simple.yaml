@@ -1,0 +1,25 @@
+name: Reusable - Simple Calculator
+
+on:
+  workflow_call:
+    inputs:
+      num1:
+        type: number
+        required: true
+      num2:
+        type: number
+        required: true
+    outputs:
+      sum:
+        value: ${{ jobs.calculate.outputs.result }}
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.calc.outputs.sum }}
+    steps:
+      - id: calc
+        run: |
+          sum=$(((${{ inputs.num1 }} + ${{ inputs.num2 }})))
+          echo "sum=$sum" >> $GITHUB_OUTPUT

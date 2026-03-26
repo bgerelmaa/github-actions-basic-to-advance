@@ -1,43 +1,27 @@
-name: Advanced-2 Workflow
+name: Exercise - Simple Reusable Workflow
 
 on:
-  workflow_call:
-    inputs:
-      number1:
-        description: 'First number'
-        required: true
-        type: number
-        default: 0
-      number2:
-        description: 'Second number'
-        required: true
-        type: number
-        default: 0
-    outputs:
-      sum:
-        description: 'Sum of the two numbers'
-        value: ${{ jobs.add-numbers.outputs.sum }}
-        
+  push:
+    branches:
+      - main
 
 jobs:
-  add-numbers:
-    name: Add two numbers
-    runs-on: ubuntu-latest
+  add-5-3:
+    uses: ./.github/workflows/reusable-simple.yaml
+    with:
+      num1: 5
+      num2: 3
 
-    outputs:
-      sum: ${{ steps.calculate.outputs.sum }}
-    
+  add-10-20:
+    uses: ./.github/workflows/reusable-simple.yaml
+    with:
+      num1: 10
+      num2: 20
+
+  show-results:
+    needs: [add-5-3, add-10-20]
+    runs-on: ubuntu-latest
     steps:
-      - id: set-up-env
-        name: Set up environment
-        run: |
-          echo "NUMBER1=${{ inputs.number1 }}" >> $GITHUB_ENV
-          echo "NUMBER2=${{ inputs.number2 }}" >> $GITHUB_ENV
-          
-      - name: Calculate sum
-        id: calculate
-        run: |
-          sum=$((NUMBER1 + NUMBER2))
-          echo "${sum}"
-          echo "SUM=${sum}" >> $GITHUB_OUTPUT
-          
+      - run: |
+          echo "5 + 3 = ${{ needs.add-5-3.outputs.sum }}"
+          echo "10 + 20 = ${{ needs.add-10-20.outputs.sum }}"
