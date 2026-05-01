@@ -1,0 +1,12 @@
+name: Resuable Workflow
+on: workflow_call
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: print a message
+          uses: actions/github-checkout@v2
+        - name: Run python tests
+          shell: bash
+          run: echo "Hello from Gemma!"
