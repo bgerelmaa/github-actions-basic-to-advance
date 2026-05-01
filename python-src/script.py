@@ -8,8 +8,11 @@ print("This is the time now", now.strftime("%Y-%m-%d %H:%M:%S"))
 parser = argparse.ArgumentParser(description="Process some inputs.")
 parser.add_argument('--input1', type=str, required=True, help='First input')
 parser.add_argument('--input2', type=str, required=True, help='Second input')
+parser.add_argument('--input3', type=str, required=True, help='Third input')
+
     
 args = parser.parse_args()
     
 print("time now" +now.strftime("%Y-%m-%d %H:%M:%S")+ args.input1)
 print("time now" +now.strftime("%Y-%m-%d %H:%M:%S")+args.input2)
+print("time now" +now.strftime("%Y-%m-%d %H:%M:%S")+args.input3)
