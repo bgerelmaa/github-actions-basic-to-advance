@@ -1,8 +1,15 @@
+# create a simple action to print "Hello, World!" in the logs.
 name: 'My Composite Action'
-description: 'Prints message from Bash'
+description: 'Prints message from Bash' 
+inputs:
+  message:
+    description: 'The message to print'
+    required: false
+    default: 'Hello, from Gemma!'
 runs:
   using: 'composite'
   steps:
-    - name: Say Hello from Bash
-      shell: bash
-      run: bash script-src/script.sh
+    - name: Print Message
+      uses: actions/github-checkout@v2
+    - name: Run python tests
+      run: python -m unittest discover -s tests
