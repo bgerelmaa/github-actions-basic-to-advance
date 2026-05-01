@@ -1,11 +1,7 @@
 # create a simple action to print "Hello, World!" in the logs.
 name: 'My Composite Action'
 description: 'Prints message from Bash' 
-inputs:
-  message:
-    description: 'The message to print'
-    required: false
-    default: 'Hello, from Gemma!'
+
 runs:
   using: 'composite'
   steps:
