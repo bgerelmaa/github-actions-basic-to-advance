@@ -1,0 +1,17 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_composite_action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Call the composite action from another file
+        uses: kooroshsajadi/github-actions-basic-to-advance/.github/actions/composite/composite_action_workshop.yaml@main
