@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Call the composite action from another file
-        uses: kooroshsajadi/github-actions-basic-to-advance/.github/actions/composite/composite_action_workshop.yaml@main
+        uses: kooroshsajadi/github-actions-basic-to-advance/.github/actions/composite/action.yaml@main
